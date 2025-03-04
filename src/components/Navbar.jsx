@@ -2,23 +2,34 @@ import { useEffect, useState } from 'react'
 
 function Navbar() {
 
-    const [theme, setTheme] = useState(localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) ? 'dark' : 'light')
+    // -------------------------------------------------------------------------
 
-    function toggleTheme(e) {
-        if(e.target.checked) {
-            setTheme('dark')
-        } else {
-            setTheme('light')
-        }
-    }
+    const [theme, setTheme] = useState(
+        localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) ? ['dark', true] : ['light', false]
+    )
+
+    // -------------------------------------------------------------------------
 
     useEffect(() => {
-        localStorage.setItem('theme', theme)
+        localStorage.setItem('theme', theme[0])
         const localTheme = localStorage.getItem('theme')
         document.querySelector('html').setAttribute('data-theme', localTheme)
     })
 
+    // -------------------------------------------------------------------------
+    // FUNCTIONS
 
+    function toggleTheme(e) {
+        if(e.target.checked) {
+            setTheme(['dark', true])
+        } else {
+            setTheme(['light', false])
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // RETURN
+    
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -26,7 +37,7 @@ function Navbar() {
             </div>
             <label className="swap swap-rotate">
                 {/* this hidden checkbox controls the state */}
-                <input type="checkbox" onChange={toggleTheme} />
+                <input type="checkbox" checked={theme[1]} onChange={toggleTheme} />
 
                 {/* sun icon */}
                 <svg
