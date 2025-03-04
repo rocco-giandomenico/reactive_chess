@@ -1,11 +1,11 @@
 import Navbar from "./components/Navbar"
-import Hero from "./components/Hero"
+import Chessboard from "./components/Chessboard"
 
 function App() {
   return (
     <main className='flex flex-col h-full'>
       <Navbar></Navbar>
-      <Hero></Hero>
+      <Chessboard></Chessboard>
     </main>
   )
 }
