@@ -10,7 +10,8 @@ function Chessboard() {
                     <div class="card-body flex flex-col">
                         <h2 class="card-title">Chessboard</h2>
                     
-                        <div class="flex-1 flex items-center justify-center">
+                        <div class="relative flex-1 flex items-center justify-center">
+                            
                             <div class="grid grid-cols-8 gap-0 w-full max-w-full max-h-full aspect-square border-2 border-base-300">
                                 {Array.from({ length: 64 }).map((_, index) => {
                                     const row = Math.floor(index / 8);
@@ -25,7 +26,14 @@ function Chessboard() {
                                     ></div>
                                     );
                                 })}
-                            </div>
+
+
+                                <div class="absolute w-[12.5%] h-[12.5%] top-0 left-0 flex items-center justify-center bg-red-500">
+                                    ♜
+                                </div>
+
+                                
+                            </div>                           
                         </div>
                     </div>
                 </div>
